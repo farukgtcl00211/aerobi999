@@ -40,9 +40,7 @@ const Navbar = () => {
             setCartpp(!cartpp)
         }else{
             setCartpp(false)
-        }
-         
-            
+        }               
          
     })
    },[cartshow, cartacc,cartpp ])

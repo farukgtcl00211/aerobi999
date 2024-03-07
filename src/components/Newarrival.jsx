@@ -93,6 +93,7 @@ const Newarrival = () => {
                      <div className="py-3">
                      <div className="relative group">
                          <img src={item.thumbnail} className='h-[300px]' alt="" />
+                         
                          <div className="absolute bottom-0 left-0 bg-[#fff] w-full h-[0px] opacity-0 group-hover:h-[200px]
                           duration-500 ease-in group-hover:opacity-100">
                              <div className="">
