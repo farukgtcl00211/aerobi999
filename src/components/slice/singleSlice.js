@@ -5,6 +5,7 @@ export const singleSlice = createSlice({
   initialState: {
    cartItem : localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')): [],
   },
+
   reducers: {
    addToCart: (state,action) => {
 
@@ -21,11 +22,30 @@ export const singleSlice = createSlice({
       localStorage.setItem('cart',JSON.stringify(state.cartItem))
     }
     },
+
+    removeProduct: (state, action)=>{
+      state.cartItem.splice(action.payload, 1)
+      localStorage.setItem('cart',JSON.stringify(state.cartItem))
+
+    },
+
+    incrementProduct: (state,action)=>{
+      state.cartItem[action.payload]. qun += 1
+      localStorage.setItem('cart',JSON.stringify(state.cartItem))
+    },
+
+    decrementProduct:(state,action)=>{
+      if(state.cartItem[action.payload]. qun >1){
+        state.cartItem[action.payload]. qun -= 1
+        localStorage.setItem('cart',JSON.stringify(state.cartItem))
+      }
+      
+    }       
  
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addToCart } = singleSlice.actions
+export const { addToCart,removeProduct, incrementProduct,decrementProduct } = singleSlice.actions
 
 export default singleSlice.reducer

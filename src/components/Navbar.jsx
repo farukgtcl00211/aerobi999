@@ -8,10 +8,14 @@ import { FaShoppingCart } from "react-icons/fa";
 import { IoMdSearch } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import { BsFillStopwatchFill } from "react-icons/bs";
+import { UseSelector, useSelector } from 'react-redux';
 
 
 const Navbar = () => {
 
+    let data = useSelector((state)=>state.single.cartItem)
+
+console.log(data);
     let [cartshow, setCartshow] = useState(false)
     let [cartacc, setCartacc] = useState(false)
     let [cartpp, setCartpp] = useState(false)
@@ -105,19 +109,23 @@ const Navbar = () => {
                 
 
             <div className="" ref={catppRef}><FaShoppingCart />
-                 {cartpp &&  <div className="absolute top-[50px] right-0">
+                 {cartpp && 
+                  <div className="absolute top-[50px] right-0">
+                    
+                    {data.map((item)=>(
+                        <div className=""> 
                  <div className="flex items-center ">
 
                 <div className="h-[50px] w-[50px] bg-[#D8D8D8] relative">
-                <BsFillStopwatchFill className='absolute top-[20%] left-[20%] text-[30px]' />
+                <img src={item.thumbnail} className='absolute top-[20%] left-[20%] text-[30px]' />
                 </div>
-                <div className="flex items-center z-50"><p className='pl-[20px] pr-[20px] text-dm font-bold'>Black Smart Watch <br />
-                                        $44.00</p>
+                <div className="flex items-center z-50"><p className='pl-[20px] pr-[20px] text-dm font-bold'>B{item.title} <br />
+                                        {item.price}</p>
                                         <RxCross2 />
                                         </div>
 
                 </div>
-                <div className="py-5 bg-[#fff]"><p className='text-dm text-dm text-[#767676]'>subtotal:<span className='font-bold pl-5'>$44.00</span> </p></div>
+                <div className="py-5 bg-[#fff]"><p className='text-dm text-dm text-[#767676]'>subtotal:<span className='font-bold pl-5'>${item.price * item.qun}</span> </p></div>
 
 
                 <div className="flex gap-x-1 py-2 px-2 bg-[#fff] ">
@@ -126,8 +134,14 @@ const Navbar = () => {
                             
                 
                 </div>
+                </div> 
+                    ))}
 
-                    </div>   } 
+                  
+
+
+                    </div>   
+                    } 
 
                        
             
